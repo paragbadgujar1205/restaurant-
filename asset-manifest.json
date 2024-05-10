@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/restaurant/static/css/main.1ba98b0d.css",
+    "main.js": "/restaurant/static/js/main.3461e5d3.js",
+    "static/media/man.jpg.jpg": "/restaurant/static/media/man.jpg.cca8501fcc0aa928bd0f.jpg",
+    "index.html": "/restaurant/index.html",
+    "main.1ba98b0d.css.map": "/restaurant/static/css/main.1ba98b0d.css.map",
+    "main.3461e5d3.js.map": "/restaurant/static/js/main.3461e5d3.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1ba98b0d.css",
+    "static/js/main.3461e5d3.js"
+  ]
+}
