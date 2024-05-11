@@ -21,7 +21,7 @@ const Home = () => {
         </nav>
         <div className="hero-text row justify-content-end">
           <div className="col-lg-5 col-md-7 col-12 px-3 mx-lg-5 mt-md-5 ">
-            <h1 className="">Enjoy Our Delicious Meal</h1>
+            <h1 className="header">Enjoy Our Delicious Meal</h1>
             <p>
               Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu
               diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet

@@ -118,5 +118,9 @@ html {
     .row {
         margin-top: 18vh;
     }
+    .header{
+        margin-top: 20vh;
+        line-height: 10vh;
+    }
 
 }

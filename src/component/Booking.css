@@ -91,3 +91,9 @@ textarea {
 .book-btn:hover {
     background-color: #FEA116;
 }
+
+@media screen and (max-width:500px){
+    .row{
+        margin-top:15vh;
+    }
+}
