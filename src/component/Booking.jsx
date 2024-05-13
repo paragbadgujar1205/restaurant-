@@ -1,7 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from 'axios'
 import "./Booking.css";
 
 const Booking = () => {
+  const [formData, SetFormData] = useState([
+    {
+      name: "",
+      email: "",
+      date: "",
+      people: "",
+      request: "",
+    },
+  ]);
+  const [error, setError] = useState("");
+
+  // useEffect(() => {
+  //   localStorage.setItem("formData", JSON.stringify(formData));
+  // }, [formData]);
+
+  const getData = (event) => {
+   
+    const { name, value } = event.target;
+    SetFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const showData = async(event) =>  {
+    event.preventDefault();
+
+    // Validation: Check if any required field is empty
+    if (
+      !formData.name ||
+      !formData.email ||
+      !formData.date ||
+      !formData.people
+    ) {
+      setError("Please fill out all required fields.");
+      return;
+    }
+
+    try{
+      await axios.post('http://localhost:5000/api/bookings', formData);
+      // await axios.post('https://steady-kulfi-3d4391.netlify.app', formData);
+    }catch(error){
+      console.log(error)
+    }
+    
+
+    // Retrieve existing data from local storage or initialize an empty array
+    let storedData = JSON.parse(localStorage.getItem("formData"));
+    if (!Array.isArray(storedData)) {
+      storedData = [];
+    }
+
+    // Append new form data as a new object to the array
+    storedData.push(formData);
+
+    // Update local storage with the updated array
+    localStorage.setItem("formData", JSON.stringify(storedData));
+
+    // Clear the form fields
+    SetFormData({
+      name: "",
+      email: "",
+      date: "",
+      people: "",
+      request: "",
+    });
+
+    setError(""); // Clear any previous errors
+    alert("Booking successful!");
+  };
+
   return (
     <>
       <div className="banner">
@@ -17,13 +89,14 @@ const Booking = () => {
         <div className="row pt-2">
           <div className="col-lg-6 col-md-8 mx-auto mt-lg-5">
             <div className="container">
-              <form action="" method="post" className="p-3 rounded-4">
+              <form className="p-3 rounded-4">
                 <input
                   type="text"
                   id="name"
                   name="name"
                   placeholder="Enter Your Name"
                   required=""
+                  onChange={getData}
                 />
 
                 <input
@@ -32,9 +105,16 @@ const Booking = () => {
                   name="email"
                   placeholder="Enter Your Email"
                   required=""
+                  onChange={getData}
                 />
 
-                <input type="date" id="date" name="date" required="" />
+                <input
+                  type="date"
+                  id="date"
+                  name="date"
+                  required=""
+                  onChange={getData}
+                />
 
                 <input
                   type="number"
@@ -43,15 +123,19 @@ const Booking = () => {
                   placeholder="people"
                   min={1}
                   required=""
+                  onChange={getData}
                 />
-                <label htmlFor="requests">Special Requests:</label>
+                <label htmlFor="request">Special Requests:</label>
                 <textarea
-                  id="requests"
-                  name="requests"
+                  id="request"
+                  name="request"
                   placeholder="Any special requests..."
                   defaultValue={""}
+                  onChange={getData}
                 />
-                <button className="book-btn">Book</button>
+                <button className="book-btn" onClick={showData}>
+                  Book
+                </button>
               </form>
             </div>
           </div>
