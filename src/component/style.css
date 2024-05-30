@@ -137,4 +137,7 @@
     .card-description{
         display: none;
     }
+    .cart-icon{
+        margin-left: 0px;
+    }
 }

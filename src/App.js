@@ -6,6 +6,7 @@ import '../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js';
 import Home from "./component/Home";
 import Booking from "./component/Booking.jsx";
 import Resturant from "./component/Resturant";
+// import Cart from "./component/Cart.jsx";
 const App = () => {
   return (
     <>
@@ -13,6 +14,7 @@ const App = () => {
         <Route exact path="/" element={<Home />} />
         <Route path="/menu" element={<Resturant />} />
         <Route path="/booking" element={<Booking />} />
+        {/* <Route path="/cart" element={<Cart/>}/> */}
       </Routes>
     </>
   );

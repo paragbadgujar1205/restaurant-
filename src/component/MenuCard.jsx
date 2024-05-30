@@ -1,6 +1,7 @@
 import React from "react";
 
-const MenuCard = ({ menuData }) => {
+const MenuCard = ({ menuData , addToCart}) => {
+ 
   return (
     <>
       <div className="container">
@@ -31,6 +32,20 @@ const MenuCard = ({ menuData }) => {
                       />
                       <button className="btn btn-outline-light">
                         Order Now
+                      </button>
+                      <button
+                        className="btn btn-outline-light mt-2 "
+                        onClick={() =>
+                          addToCart({
+                            id:curElem.id,
+                            name: curElem.name,
+                            price: curElem.price,
+                            category:curElem.category,
+                            image:curElem.image
+                          })
+                        }
+                      >
+                        Add to Cart
                       </button>
                     </div>
                   </div>
