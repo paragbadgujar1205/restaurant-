@@ -1,3 +1,6 @@
+*{
+  font-family: "Bree Serif", serif;
+}
 .cart-icon{
   color: #FEA116;
   font-size: 30px;
@@ -5,9 +8,10 @@
   /* margin-right: 20px; */ 
 }
 
-tr td img{
+td, .cart-item-img{
     width: 100px;
     height: 70px;
+    vertical-align: middle;
 }
 .quantity-control {
     display: flex;
@@ -37,9 +41,20 @@ tr td img{
     height: 30px;
     padding: 0px 13px;
   }
+  .table-body{
+    max-height: 300px;
+    overflow-y: auto;
+  }
 .tfooter{
   border-top: 2px solid black;
 } 
+.empty-page {
+  margin-top: 200px;
+}
+.empty-page .empty-header, .sad-icon{
+  font-size: 60px;
+  
+}
 
 @media screen and (max-width:800px){
   .cart-icon{

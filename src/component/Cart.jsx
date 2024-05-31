@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Cart.css";
-import man from "./images/man.jpg.jpg";
 
-const Cart = ({ cart, showMenu }) => {
+const Cart = ({ cart, showMenu, deleteItem }) => {
   const [quantity, setQuantity] = useState(1);
   const [total, setTotal] = useState(0);
 
@@ -33,38 +32,53 @@ const Cart = ({ cart, showMenu }) => {
   }, [cart, quantity]);
   return (
     <>
-      <div className="container">
-        <table className="table text-center">
-          <thead>
-            <tr>
-              <th>Product</th>
-              <th>Name</th>
-              <th>Category</th>
-              <th>quantity</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody className="table-group-divider">
-            {cart.map((item) => {
-              return (
-                <>
-                  <tr>
-                    <td>
-                      <img src={item.image} alt="not display" />
-                      {console.log(cart)}
-                    </td>
-                    <td>{item.name}</td>
-                    <td>{item.category}</td>
-                    <td>
-                      <div className="quantity-control">
-                        <button
-                          className="quantity-btn decrease"
-                          aria-label="Decrease quantity"
-                          onClick={handleDecrease}
+      {cart.length === 0 ? (
+        <>
+          <div className="empty-page d-flex flex-column justify-content-center align-items-center">
+            <h1 className="empty-header">Cart Is Empty</h1>
+            <i class="fa-regular fa-face-frown sad-icon"></i>
+          </div>
+        </>
+      ) : (
+        <div className="container table-responsive">
+          <table className="table table-responsive-sm text-center">
+            <thead>
+              <tr>
+                <th>Product</th>
+                <th>Name</th>
+                <th>Category</th>
+                <th>quantity</th>
+                <th>Price</th>
+              </tr>
+            </thead>
+            <tbody className="table-group-divider table-body">
+              {cart.map((item, index) => {
+                return (
+                  <>
+                    <tr key={index}>
+                      <td>
+                        <img className="cart-item-img" src={item.image} alt="not display" />
+                        <span
+                          className="m-5"
+                          onClick={() => {
+                            return deleteItem(index);
+                          }}
                         >
-                          -
-                        </button>
-                        {/* <input
+                          <i className="fa-solid fa-trash"></i>
+                        </span>
+                      </td>
+                      <td>{item.name}</td>
+                      <td>{item.category}</td>
+                      <td>
+                        <div className="quantity-control">
+                          <button
+                            className="quantity-btn decrease"
+                            aria-label="Decrease quantity"
+                            onClick={handleDecrease}
+                          >
+                            -
+                          </button>
+                          {/* <input
                     type="text"
                     className="quantity-display"
                     value={quantity}
@@ -72,30 +86,31 @@ const Cart = ({ cart, showMenu }) => {
                     aria-live="polite"
                     aria-label="Current quantity"
                   /> */}
-                        <p className="quantity-display">{quantity}</p>
-                        <button
-                          className="quantity-btn increase"
-                          aria-label="Increase quantity"
-                          onClick={handleIncrease}
-                        >
-                          +
-                        </button>
-                      </div>
-                    </td>
-                    <td>{quantity * parseFloat(item.price)}</td>
-                  </tr>
-                </>
-              );
-            })}
-          </tbody>
-          <tfoot className="tfooter">
-            <tr>
-              <td colspan="4">Total</td>
-              <td>{total}</td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+                          <p className="quantity-display">{quantity}</p>
+                          <button
+                            className="quantity-btn increase"
+                            aria-label="Increase quantity"
+                            onClick={handleIncrease}
+                          >
+                            +
+                          </button>
+                        </div>
+                      </td>
+                      <td>{quantity * parseFloat(item.price)}</td>
+                    </tr>
+                  </>
+                );
+              })}
+            </tbody>
+            <tfoot className="tfooter">
+              <tr>
+                <td colspan="4">Total</td>
+                <td>{total}</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      )}
 
       <div onClick={() => showMenu()}>
         <div className="text-center mt-5">

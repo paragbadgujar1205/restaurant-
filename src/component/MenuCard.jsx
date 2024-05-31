@@ -6,11 +6,11 @@ const MenuCard = ({ menuData , addToCart}) => {
     <>
       <div className="container">
         <div className="row">
-          {menuData.map((curElem) => {
+          {menuData.map((curElem, index) => {
             return (
               <>
-                <div className="col-lg-4 col-md-6 col-12 g-4">
-                  <div className="card-container" key={curElem.id}>
+                <div className="col-lg-4 col-md-6 col-12 g-4" key={index}>
+                  <div className="card-container">
                     <div className="card">
                       <div className="card-body">
                         <span className="card-number card-circle subtle">
@@ -30,7 +30,7 @@ const MenuCard = ({ menuData , addToCart}) => {
                         alt="images"
                         className="card-media mb-4"
                       />
-                      <button className="btn btn-outline-light">
+                      <button className="btn btn-outline-light" onClick={()=> alert("order succesful")}>
                         Order Now
                       </button>
                       <button
